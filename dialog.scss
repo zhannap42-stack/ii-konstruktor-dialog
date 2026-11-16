@@ -1,0 +1,58 @@
+/* Dialogue UI Kit: 880px chat, 16px history insets, Reactor tokens throughout. */
+.dialog-page{padding:32px;gap:24px!important}
+.dialog-page>div,.dialog-page>span{width:880px;max-width:100%}
+.dialog-page .credits-panel{height:172px!important;min-height:172px!important}
+.dialog-page .credits-panel .panel-heading{margin:16px 24px 0;padding-bottom:16px}
+.dialog-page .credits-panel .panel-body{padding:24px}
+.dialog-panel{border:1px solid rgb(var(--REACTOR-color-border));border-radius:4px;background:rgb(var(--REACTOR-color-background-secondary));overflow:hidden;min-height:500px;flex:none!important}
+.dialog-heading{padding:20px 24px;border-bottom:1px solid rgb(var(--REACTOR-color-border));height:68px;flex:none!important}
+.dialog-welcome{min-height:0;padding:48px;text-align:center;flex:1 1 0!important;overflow-y:auto}
+.dialog-welcome .ai-picture{width:120px;height:120px}
+.dialog-welcome .empty-description{width:464px;max-width:100%}
+.welcome-action{padding-top:8px}
+.dialog-history{padding:24px 15px;min-height:0;flex:1 1 0!important;overflow-y:auto;overscroll-behavior:contain}
+.dialog-history>div{flex:none!important;scroll-margin-top:72px}
+.chat-bot{width:max-content;max-width:100%;padding:12px 15px;border:1px solid rgb(var(--REACTOR-color-border));border-radius:8px;background:rgb(var(--REACTOR-color-background-secondary));box-shadow:0 2px 1px rgb(var(--REACTOR-color-foreground) / .12);flex:none!important}
+.chat-bot>div{flex:none!important}
+.chat-wide{width:100%}
+.chat-reply{width:100%;flex:none!important}
+.chat-answer{padding:12px 16px;max-width:calc(100% - 40px);border-radius:8px;background:rgb(var(--REACTOR-color-neutral-light));white-space:pre-wrap;overflow-wrap:anywhere;flex:none!important}
+.dialog-history .data-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:100%}
+.dialog-history .data-card{padding:15px;position:relative}
+.dialog-history .data-card>div:first-child{height:24px}
+.dialog-history .data-card:nth-child(-n+2){min-height:124px}
+.dialog-history .data-card:nth-child(n+3){min-height:76px}
+.chat-links{width:556px}
+.chat-links .links{width:524px;max-width:100%}
+.chat-links .link-field{width:480px;max-width:calc(100% - 44px)}
+.chat-links .links>div:first-child .link-field{max-width:100%}
+.chat-files{width:378px}
+.chat-files.has-files{width:680px}
+.chat-upload{background:rgb(var(--REACTOR-color-background));padding:16px;max-width:100%;flex:none!important}
+.chat-upload>div{flex:none!important;max-width:100%}
+.chat-brand{width:378px}
+.chat-design-choices{align-items:stretch!important}
+.chat-design-card{border:1px solid rgb(var(--REACTOR-color-border));border-radius:4px;padding:16px;flex:1 1 0!important;min-width:0;justify-content:space-between}
+.chat-design-card>div{flex:none!important}
+.dialog-history .palette{width:100%;flex:none!important}
+.dialog-history .palette-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 24px}
+.dialog-history .down-button{min-width:0}
+.dialog-history .chat-bot [class*='loader']{max-width:32px;max-height:32px}
+.sites-page>div,.sites-page>span{width:100%}
+@media(max-width:1000px){.dialog-page{padding:24px}.chat-design-choices{flex-wrap:wrap}.chat-design-card{flex-basis:200px!important}.dialog-history .palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.dialog-page{padding:16px}.dialog-welcome{padding:24px;min-height:0}.dialog-history .data-grid{grid-template-columns:1fr}.chat-bot{width:100%}.dialog-history .palette-grid{grid-template-columns:1fr}.chat-links .link-field{width:100%;flex:1!important}.dialog-history{padding:16px 8px}}
+
+/* Loader-bubble 499:15477: original Figma circles, animated independently. */
+.typing-bubble{padding:11px 15px;width:78px;height:44px}
+.typing-dots{width:46px;height:20px;flex:none!important}
+.typing-dot{width:10px;height:20px;flex:none!important;background-image:url('./typing-dots.svg');background-size:46px 20px;background-repeat:no-repeat;animation:typing-bounce 1.2s ease-in-out infinite}
+.typing-dot-0{background-position:0 0}
+.typing-dot-1{background-position:-18px 0;animation-delay:.15s}
+.typing-dot-2{background-position:-36px 0;animation-delay:.3s}
+@keyframes typing-bounce{0%,55%,100%{transform:translateY(0)}25%{transform:translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){.typing-dot{animation:none}}
+
+.generation-page{padding:24px;min-height:calc(100dvh - 104px);justify-content:center!important;align-items:center!important}
+.generation-page>.generation-loader{width:64px;height:64px;flex:none!important}
+.dialog-footer{margin-top:0;min-height:56px;padding:12px 32px}
+.dialog-footer .footer-logo{height:32px}
