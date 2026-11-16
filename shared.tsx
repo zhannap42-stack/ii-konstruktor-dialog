@@ -3,7 +3,7 @@ import {Alignments} from '@reactor/core';
 import {intl} from '@reactor/intl';
 import React,{useEffect,useMemo,useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {UploaderPreview,UploaderUploadButton,FileIcon,ActionMenu,Badge,CoreButton,translations,ReactorTheme,Box,Row,Column,Text,Button,Icon,IconButton,Field,Tile,Alert,Radio,ColorPicker,ColorSwatch,Uploader,UploaderMode,Loader} from '@reactor/reactor';
+import {UploaderPreview,UploaderPreviewImage,UploaderIcon,UploaderButton,UploaderUploadButton,FileIcon,ActionMenu,Badge,CoreButton,translations,ReactorTheme,Box,Row,Column,Text,Button,Icon,IconButton,Field,Tile,Alert,Radio,ColorPicker,ColorSwatch,Uploader,UploaderMode,Loader} from '@reactor/reactor';
 
 import aiPicture from './ai-laptop.svg';
 import footerLogo from './footer-logo.svg';
@@ -28,8 +28,33 @@ function Upload({bucket,type='file',changed}:any){
  if(replace){URL.revokeObjectURL(replace.url);buckets[bucket]=buckets[bucket].map(f=>f===replace?added[0]:f)}else buckets[bucket]=bucket==='brand'?added.slice(0,1):[...buckets[bucket],...added];changed();};
  return <Column gap={16}>{error&&<Alert status="warning" text={error}/>}<Row gap={16} wrap>{(bucket!=='brand'||!buckets[bucket].length)&&<UploaderUploadButton type="file" onClick={()=>pick()}/>} {buckets[bucket].map(file=><UploaderPreview key={file.url} content={<Column decoration="document-preview" gap={8} alignItems="center" justifyContent="center"><FileIcon icon="file" color={file.name.toLowerCase().endsWith('.pdf')?'pink':'accent'} text={file.name.split('.').pop()}/><Text text={file.name} typography="caption"/></Column>} onReplace={()=>pick(file)} onDelete={()=>{URL.revokeObjectURL(file.url);buckets[bucket]=buckets[bucket].filter(f=>f!==file);changed()}}/>)}</Row></Column>
 }
+
+function ChatMaterials({changed}:any){
+ const [error,setError]=useState('');
+ const pick=async(bucket:'photos'|'docs',replace?:FileItem)=>{
+  const accept=bucket==='photos'?['.jpg','.jpeg','.png','.webp']:['.pdf','.docx','.txt'];
+  const files=await FilePicker.select({accept,multiple:!replace});
+  if(!files.length)return;
+  const valid=files.filter(f=>accept.some(ext=>f.name.toLowerCase().endsWith(ext))&&f.size<=30*1024*1024);
+  setError(valid.length<files.length?'Поддерживаются '+accept.join(', ')+' до 30 МБ.':'');
+  if(!valid.length)return;
+  const added=valid.map(f=>({name:f.name,url:URL.createObjectURL(f)}));
+  if(replace){URL.revokeObjectURL(replace.url);buckets[bucket]=buckets[bucket].map(f=>f===replace?added[0]:f)}
+  else buckets[bucket]=[...buckets[bucket],...added];
+  changed();
+ };
+ const remove=(bucket:string,file:FileItem)=>{URL.revokeObjectURL(file.url);buckets[bucket]=buckets[bucket].filter(f=>f!==file);changed()};
+ return <Column decoration="chat-upload chat-materials" gap={24}>
+  {error&&<Alert status="warning" text={error}/>}
+  <Row decoration="material-controls" gap={16} wrap>
+   <UploaderButton icon="photo" text="Загрузить изображения" onClick={()=>pick('photos')}/>
+   {!buckets.docs.length?<UploaderUploadButton type="file" onClick={()=>pick('docs')}/>:buckets.docs.map(file=><UploaderPreview key={file.url} content={<UploaderIcon icon={<FileIcon icon="file" color={file.name.toLowerCase().endsWith('.pdf')?'pink':'neutral'} text={file.name.split('.').pop()}/>} text={file.name} lines={2}/>} onReplace={()=>pick('docs',file)} onDelete={()=>remove('docs',file)}/>)}
+  </Row>
+  {buckets.photos.length>0&&<Row decoration="material-photos" gap={8} wrap>{buckets.photos.map(file=><UploaderPreview key={file.url} smallPadding content={<UploaderPreviewImage url={file.url}/>} onReplace={()=>pick('photos',file)} onDelete={()=>remove('photos',file)}/>)}</Row>}
+ </Column>
+}
 function FormRow({title,help,children}:any){return <Row decoration="form-row" gap={30} alignItems="flex-start"><Box decoration="form-label" gap={8}><T>{title}</T><T kind="caption" color="neutral">{help}</T></Box><Box decoration="form-control" gap={16}>{children}</Box></Row>}
-function Panel({title,children}:any){return <Tile decoration={"panel "+(title==='Мои Сайты'?'home-panel':title==='AI-кредиты'?'credits-panel':'')}><Column gap={0}><Box decoration="panel-heading"><T kind="block-title">{title}</T></Box><Column decoration="panel-body" gap={32}>{children}</Column></Column></Tile>}
+function Panel({title,children}:any){return <Tile decoration={"panel "+(title==='Мои Сайты'?'home-panel':title==='ИИ-кредиты'?'credits-panel':'')}><Column gap={0}><Box decoration="panel-heading"><T kind="block-title">{title}</T></Box><Column decoration="panel-body" gap={32}>{children}</Column></Column></Tile>}
 // UI Kit: Card design (181:6426 / 474:9993), composed from Reactor primitives.
 function CardDesign({title,description,selected,active=selected,onSelect,children}:any){return <Tile decoration={'card-design'+(active?' selected':'')}><Column gap={16}><Row decoration="card-design-header" gap={4} alignItems="flex-start"><Box decoration="card-design-radio" alignItems="center" justifyContent="center"><Radio value={selected} onChange={onSelect}/></Box><CoreButton decoration={['card-design-title']} onClick={onSelect}><Column gap={8}><T kind="subtitle">{title}</T><T kind="promo-paragraph">{description}</T></Column></CoreButton></Row>{React.Children.toArray(children).length>0&&<Box decoration="card-design-setting">{children}</Box>}</Column></Tile>}
 // UI Kit: Down button — normal, hover, selected and selected-hover states.
@@ -48,4 +73,4 @@ function SiteActions({site,onAction}:any){return <ActionMenu window={{size:()=>(
 {icon:'return-time',text:'История версий',onClick:()=>onAction('История версий',site)},
 {icon:'delete',text:'Удалить',onClick:()=>onAction('Удалить',site)}]}/>}
 
-export {T,B,menu,palette,buckets,Upload,Panel,DownButton,CustomColorSelection,CustomColorField,SiteActions,aiPicture,footerLogo,editorImage};
+export {ChatMaterials,T,B,menu,palette,buckets,Upload,Panel,DownButton,CustomColorSelection,CustomColorField,SiteActions,aiPicture,footerLogo,editorImage};
