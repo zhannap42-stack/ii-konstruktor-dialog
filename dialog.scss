@@ -56,3 +56,10 @@
 .generation-page>.generation-loader{width:64px;height:64px;flex:none!important}
 .dialog-footer{margin-top:0;min-height:56px;padding:12px 32px}
 .dialog-footer .footer-logo{height:32px}
+
+.nav-subitem{height:40px;min-height:40px;background:rgb(var(--REACTOR-color-scaffold-level-2-background));border-bottom-color:rgb(var(--REACTOR-color-background))}
+.nav-subitem.selected{background:rgb(var(--REACTOR-color-neutral-dark))}
+.nav-subitem a{padding-left:48px!important;color:rgb(var(--REACTOR-color-background-disabled))!important}
+.sites-page{padding:24px;gap:20px!important;min-height:calc(100dvh - 104px)}
+.sites-page .panel-heading{margin:20px 20px 0;padding-bottom:20px}
+.sites-page .panel-body{padding:44px 20px 20px}

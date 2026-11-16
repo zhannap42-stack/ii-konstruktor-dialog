@@ -10,7 +10,7 @@ import footerLogo from './footer-logo.svg';
 import editorImage from './editor.png';
 const T=({children,kind='paragraph',color='foreground',...rest}:any)=><Text text={React.Children.toArray(children).join('')} typography={kind} color={color} {...rest}/>;
 const B=({children,primary=false,...p}:any)=><Button text={children} type={primary?'primary':'default'} {...p}/>;
-const menu=[['lamp','Помощник'],['calendar-day','Управление номерами'],['house','Настройки гостиницы'],['developer-board','Управление отелем'],['laptop','AI-сайты'],['hive','Менеджер каналов'],['forum','Репутация'],['laptop','Конструктор сайта'],['folder','Документооборот'],['user-check','Онлайн-регистрация'],['chart','Отчеты'],['arrow-circle-double','Сравнение цен']];
+const menu=[['lamp','Помощник'],['calendar-day','Управление номерами'],['house','Настройки гостиницы'],['developer-board','Управление отелем'],['laptop','ИИ-сайты'],['hive','Менеджер каналов'],['forum','Репутация'],['laptop','Конструктор сайта'],['folder','Документооборот'],['user-check','Онлайн-регистрация'],['chart','Отчеты'],['arrow-circle-double','Сравнение цен']];
 // Figma content values for the site's palette. UI colors themselves use Reactor tokens.
 const palette=[['Золотой',12027955],['Песчаный',14463594],['Терракотовый',13919297],['Коралловый',15295592],['Бордовый',9052227],['Фиолетовый',7428567],['Синий',1799594],['Голубой',3057355],['Бирюзовый',37259],['Зеленый',4096350],['Оливковый',8028987],['Коричневый',8148292]] as const;
 type FileItem={name:string,url:string};
