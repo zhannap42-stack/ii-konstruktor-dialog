@@ -131,3 +131,7 @@ body{overflow:visible}
 .editor-screen{position:relative;min-height:100vh;flex:none!important;background:rgb(var(--REACTOR-color-background-secondary))}
 .editor-image{display:block;width:100%;height:auto}
 .editor-back{position:absolute;left:1.944444vw;top:1.944444vw;flex:none!important}
+
+/* UI Kit: ai laptop, Figma 62:25642. */
+.nav-ai-link{display:flex;align-items:center;height:48px;min-height:48px;gap:12px}
+.nav-ai-icon{width:24px;height:24px;flex:none;background:currentColor;mask:url("./ai-sites-menu.svg") center / 24px 24px no-repeat;-webkit-mask:url("./ai-sites-menu.svg") center / 24px 24px no-repeat}
