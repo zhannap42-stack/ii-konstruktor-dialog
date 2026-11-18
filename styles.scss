@@ -122,7 +122,7 @@ body{overflow:visible}
 .document-preview{width:146px;height:146px;padding:16px;text-align:center;box-sizing:border-box!important;overflow:hidden}
 .document-preview>span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 
-.table-head,.table-row{grid-template-columns:minmax(248px,1fr) 200px 175px 157px 162px 120px}
+.table-head,.table-row{grid-template-columns:minmax(187px,1fr) 175px 160px 160px 130px 162px 90px}
 .table-row [class*="badge-"]{flex:none!important;max-inline-size:none!important}
 .steps .wizard-step:nth-child(1){width:177px}
 .steps .wizard-step:nth-child(2){width:265px}
@@ -135,3 +135,10 @@ body{overflow:visible}
 /* UI Kit: ai laptop, Figma 62:25642. */
 .nav-ai-link{display:flex;align-items:center;height:48px;min-height:48px;gap:12px}
 .nav-ai-icon{width:24px;height:24px;flex:none;background:currentColor;mask:url("./ai-sites-menu.svg") center / 24px 24px no-repeat;-webkit-mask:url("./ai-sites-menu.svg") center / 24px 24px no-repeat}
+
+/* Sites table, Figma 474:10130. */
+.table-row{height:auto;min-height:80px;padding:8px 0}
+.table-row>div.site-version{gap:4px}
+.version-history{align-items:flex-start;flex:none}
+.version-history a,.version-history a span{text-decoration:none!important}
+.version-history a{border-bottom:1px dashed rgb(var(--REACTOR-color-accent));line-height:20px}

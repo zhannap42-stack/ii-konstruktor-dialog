@@ -66,11 +66,10 @@ const exampleSites=[
 {id:2,name:'Сонная Лощина 1',version:2,date:'16.10.2026, 13:20',languages:'RU, EN-US, AR, HY',domain:false,status:'Опубликован'},
 {id:3,name:'Сонная Лощина 2',version:1,date:'17.10.2026, 11:00',languages:'RU',domain:false,status:'Черновик'},
 {id:4,name:'Сонная Лощина 3',version:5,date:'17.10.2026, 11:00',languages:'RU',domain:true,status:'Готов к публикации'}];
-function SiteActions({site,onAction}:any){return <ActionMenu window={{size:()=>({minWidth:240,maxWidth:240})}} actions={[
+function SiteActions({site,onAction}:any){return <ActionMenu trigger={props=><Button {...props} icon="menu-horiz" aria-label="Действия сайта"/>} window={{size:()=>({minWidth:184,maxWidth:184})}} actions={[
 {icon:'edit',text:'Редактировать',onClick:()=>onAction('Редактировать',site)},
-{icon:'redo',text:'Подготовить публикацию',onClick:()=>onAction('Подготовить публикацию',site)},
-{icon:'settings',text:'Настройка сайта',onClick:()=>onAction('Настройка сайта',site)},
-{icon:'return-time',text:'История версий',onClick:()=>onAction('История версий',site)},
+{icon:'redo',text:'Опубликовать',onClick:()=>onAction('Опубликовать',site)},
+{icon:'settings',text:'Настроить сайт',onClick:()=>onAction('Настроить сайт',site)},
 {icon:'delete',text:'Удалить',onClick:()=>onAction('Удалить',site)}]}/>}
 
 export {ChatMaterials,T,B,menu,palette,buckets,Upload,Panel,DownButton,CustomColorSelection,CustomColorField,SiteActions,aiPicture,footerLogo,editorImage};
