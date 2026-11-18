@@ -63,7 +63,6 @@ const CustomColorSelection=React.createContext(false);
 function CustomColorField({value,onClick,ref}:any){const selected=React.useContext(CustomColorSelection);return <DownButton value={value} selected={selected} onClick={onClick} buttonRef={ref}><Icon name="color-fill" color="neutral"/></DownButton>}
 const exampleSites=[
 {id:1,name:'Сонная Лощина',version:4,date:'16.10.2026, 13:20',languages:'RU, EN-US, AR, HY',domain:true,status:'Опубликован'},
-{id:2,name:'Сонная Лощина 1',version:2,date:'16.10.2026, 13:20',languages:'RU, EN-US, AR, HY',domain:false,status:'Опубликован'},
 {id:3,name:'Сонная Лощина 2',version:1,date:'17.10.2026, 11:00',languages:'RU',domain:false,status:'Черновик'},
 {id:4,name:'Сонная Лощина 3',version:5,date:'17.10.2026, 11:00',languages:'RU',domain:true,status:'Готов к публикации'}];
 function SiteActions({site,onAction}:any){return <ActionMenu trigger={props=><Button {...props} icon="menu-horiz" aria-label="Действия сайта"/>} window={{size:()=>({minWidth:184,maxWidth:184})}} actions={[
